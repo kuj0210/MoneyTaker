@@ -1,5 +1,5 @@
 # <img src="https://image.flaticon.com/icons/svg/138/138207.svg" width="64">MoneyTaker
-![License: MIT](https://img.shields.io/github/license/mashape/apistatus.svg)
+![License: MIT](https://img.shields.io/github/license/mashape/apistatus.svg) ![python: 3.5](https://img.shields.io/pypi/pyversions/Django.svg)
 
 
 
