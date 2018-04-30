@@ -3,7 +3,7 @@
 
 
 
-### MoneyTaker is useful in A complex debt relationship
+### MoneyTaker is useful solution in Your complex debt relationship
 
 ## Index
 * [Introduction](#introduction)
