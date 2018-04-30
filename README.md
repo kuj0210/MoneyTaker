@@ -4,6 +4,7 @@
 
 
 ### MoneyTaker is useful solution in Your complex debt relationship
+If a debtor fails to repay the debt after a certain period of time in debt, the creditor may suffer from an option to wait or press. MoneyTaker is a solution program to resolve debt conflicts between these people, simplifying debt relations and minimizing conflicts between creditors.
 
 ## Index
 * [Introduction](#introduction)
