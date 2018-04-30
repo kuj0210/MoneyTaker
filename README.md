@@ -1,9 +1,9 @@
-# <img src="https://github.com/kuj0210/IoT-Pet-Home-System/blob/master/.README/pet_Image.jpg?raw=true" width="64">MoneyTaker
+# <img src="https://image.flaticon.com/icons/svg/138/138207.svg" width="64">MoneyTaker
 ![License: MIT](https://img.shields.io/github/license/mashape/apistatus.svg)
 
 
 
-### 설명 MoneyTaker
+### MoneyTaker is useful in A complex debt relationship
 
 ## Index
 * [Introduction](#introduction)
