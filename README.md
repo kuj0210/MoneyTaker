@@ -7,9 +7,9 @@
 
 ## Index
 * [Introduction](#introduction)
-* [Features](#Features)
-* [Requirement](#Requirement)
-* [Settings](#Settings)
+* [Features](#-features)
+* [Requirement](#requirement)
+* [Settings](#--settings)
 
 ## <img src = "https://image.flaticon.com/icons/svg/321/321777.svg" width=60 > **Features**
 
