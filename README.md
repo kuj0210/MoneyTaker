@@ -9,7 +9,7 @@
 * [Introduction](#introduction)
 * [Features](#-features)
 * [Requirement](#requirement)
-* [Settings](#--settings)
+* [Settings & Installation](#-Settings & Installation)
 
 
 ## <img src = "https://image.flaticon.com/icons/svg/46/46689.svg" width=60 >**introduction** 
