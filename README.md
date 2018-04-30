@@ -7,17 +7,28 @@
 
 ## Index
 * [Introduction](#introduction)
+* [Requirement](#Requirement)
+* [Settings](#Settings)
 
-## Introduction
+## <img src = "https://image.flaticon.com/icons/svg/321/321777.svg" width=60 > **Features**
+
+ - Usage through Messenger
+ - Raspberry Pi with chat-bot based System
+ - Using communication with flask server
+ - Using 2 flask servers.(Main Server(in aws), PiServer(in raspberryPi))
+ - You can check the status of your baby by using mobile system
 
 
+## <img src = "https://image.flaticon.com/icons/svg/715/715585.svg" width=60 > **Requirement**
 
-## **Features**
  - 
 
+## <img src = "https://image.flaticon.com/icons/svg/138/138849.svg" width=60 > **Settings & Installation**
 
+### **Settings** 
+-
 
- ## **LICENSE**
+## **LICENSE**
  
 MoneyTaker is licensed under [MIT]
  
