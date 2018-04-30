@@ -20,7 +20,10 @@ If a debtor fails to repay the debt after a certain period of time in debt, the 
 
 ## <img src = "https://image.flaticon.com/icons/svg/321/321777.svg" width=60 > **Features**
 
- - 
+ - Dutch treat
+ - Borrow money
+ - Pay back
+ - Pushing
 
 
 ## <img src = "https://image.flaticon.com/icons/svg/715/715585.svg" width=60 > **Requirement**
