@@ -1,5 +1,5 @@
 # <img src="https://github.com/kuj0210/IoT-Pet-Home-System/blob/master/.README/pet_Image.jpg?raw=true" width="64">MoneyTaker
-[![License: MIT](https://img.shields.io/github/license/mashape/apistatus.svg)]
+![License: MIT](https://img.shields.io/github/license/mashape/apistatus.svg)
 
 
 
