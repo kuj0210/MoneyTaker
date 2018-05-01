@@ -1,5 +1,5 @@
 # <img src="https://image.flaticon.com/icons/svg/138/138207.svg" width="64">MoneyTaker
-![License: MIT](https://img.shields.io/github/license/mashape/apistatus.svg) ![python: 3.5](https://img.shields.io/badge/Language-python3.5-blue.svg)![lang: C#](https://img.shields.io/badge/Language-C%23-red.svg)
+![License: MIT](https://img.shields.io/github/license/mashape/apistatus.svg) ![python: 3.5](https://img.shields.io/badge/Language-python3.5-blue.svg) ![lang: C#](https://img.shields.io/badge/Language-C%23-red.svg)
 
 
 ### MoneyTaker is useful solution in Your complex debt relationship
