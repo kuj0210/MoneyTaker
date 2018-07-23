@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2BB8B415-F7A1-4968-B70B-DE27E079E650}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MoneyTaker</RootNamespace>
+    <AssemblyName>MoneyTaker</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data, Version=8.0.11.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Reference\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config.cs" />
+    <Compile Include="MainApp.cs" />
+    <Compile Include="Model\Borrow.cs" />
+    <Compile Include="Model\Buscar.cs" />
+    <Compile Include="Model\Friend.cs" />
+    <Compile Include="Model\IOU.cs" />
+    <Compile Include="Model\Model.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\ClarifyManager.cs" />
+    <Compile Include="Util\DBManager.cs" />
+    <Compile Include="Util\EncryptTool.cs" />
+    <Compile Include="Util\MailManager.cs" />
+    <Compile Include="Util\RegistryManager.cs" />
+    <Compile Include="View\AddFriendsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AddFriendsForm.Designer.cs">
+      <DependentUpon>AddFriendsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddGroupsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AddGroupsForm.designer.cs">
+      <DependentUpon>AddGroupsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DealForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DealForm.designer.cs">
+      <DependentUpon>DealForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FriendsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FriendsForm.designer.cs">
+      <DependentUpon>FriendsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\LoginForm.designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\MainForm.designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainStartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\MainStartForm.designer.cs">
+      <DependentUpon>MainStartForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ProfileForm.designer.cs">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controller\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\AddFriendsForm.resx">
+      <DependentUpon>AddFriendsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\AddGroupsForm.resx">
+      <DependentUpon>AddGroupsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DealForm.resx">
+      <DependentUpon>DealForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FriendsForm.resx">
+      <DependentUpon>FriendsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\MainStartForm.resx">
+      <DependentUpon>MainStartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ProfileForm.resx">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
