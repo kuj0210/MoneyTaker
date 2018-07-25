@@ -35,24 +35,24 @@ class MoneyTakerServerTest(unittest.TestCase):
         self.assertEqual(result, [])
 
     def test_register_new_user(self):  # 존재하지 않는 아이디를 가입.
-        p = self.app.post('/register',
-                          json={'id': 'user2', 'pw': xor_encrypt('1q2w3e4r', ENCRYPT_KEY), 'class': 'user'})
+        p = self.app.post('/',
+                          json={'type':'register','id': 'user2', 'pw': xor_encrypt('1q2w3e4r', ENCRYPT_KEY), 'class': 'user'})
         result = json.loads(p.data)
         self.assertEqual(result["result"], "failed")
 
     def test_register_exist_user(self):  # 이미 가입되어 있는 아이디를 가입.
-        p = self.app.post('/register',
-                          json={'id': 'user1', 'pw': xor_encrypt('1q2w3e4r', ENCRYPT_KEY), 'class': 'user'})
+        p = self.app.post('/',
+                          json={'type':'register','id': 'user1', 'pw': xor_encrypt('1q2w3e4r', ENCRYPT_KEY), 'class': 'user'})
         result = json.loads(p.data)
         self.assertEqual(result["result"], "failed")
 
     def test_login_normal(self):  # 정상 로그인
-        p = self.app.post('/login', json={'id': 'user1', 'pw': xor_encrypt('1q2w3e4r', ENCRYPT_KEY)})
+        p = self.app.post('/', json={'type':'login','id': 'user1', 'pw': xor_encrypt('1q2w3e4r', ENCRYPT_KEY)})
         result = json.loads(p.data)
         self.assertEqual(result["result"], "success")
 
     def test_login_abnormal(self):  # 잘못된 비밀번호로 로그인
-        p = self.app.post('/login', json={'id': 'user1', 'pw': xor_encrypt('1q2w3e4r5t', ENCRYPT_KEY)})
+        p = self.app.post('/', json={'type':'login','id': 'user1', 'pw': xor_encrypt('1q2w3e4r5t', ENCRYPT_KEY)})
         result = json.loads(p.data)
         self.assertEqual(result["result"], "failed")
 

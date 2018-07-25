@@ -33,7 +33,7 @@ app = Flask(__name__)
 dbc = DBManager(dbn=DB_DATABASE)
 
 
-@app.route('', methods=['POST'])
+@app.route('/', methods=['POST'])
 def main():
     try:
         dataReceive = request.get.json()
