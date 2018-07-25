@@ -1,12 +1,11 @@
 import unittest
 import json
 from flask import Flask
-from SimpleShoppingmallServer import *
+from MoneyTakerServer import *
 
 ENCRYPT_KEY = 'abcdefghijklmnopqrstuvwxyz123456'
 
-
-class MySimpleShoppingmallServerTest(unittest.TestCase):
+class MoneyTakerServerTest(unittest.TestCase):
 
     # before
     def setUp(self):  # 새로운 테스트 클라이언트를 생성
@@ -56,17 +55,6 @@ class MySimpleShoppingmallServerTest(unittest.TestCase):
         p = self.app.post('/login', json={'id': 'user1', 'pw': xor_encrypt('1q2w3e4r5t', ENCRYPT_KEY)})
         result = json.loads(p.data)
         self.assertEqual(result["result"], "failed")
-
-    def test_get_all_lineitem(self):  # 쇼핑 물품 목록들 가져오기
-        p = self.app.post("/lineitem", json={"type": "get_itemlist", "token": "TEST"})
-        result = json.loads(p.data)
-        self.assertEquals(result['itemlist'][0][1], '새우깡')
-
-    def test_get_empty_shoppingCart(self):  # 쇼핑카트 가져오기_ 비어있는 경우
-        p = self.app.post("/shoppingcart", json={"type": "get_shoppingcart", "id": "user1", "token": "TEST"})
-        result = json.loads(p.data)
-        self.assertEquals(result['shoppingcart'], [])
-
 
 if __name__ == "__main__":
     unittest.main()

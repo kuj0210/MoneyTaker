@@ -13,6 +13,7 @@ class DBManager:
         self.db = dbn
         if not os.path.isfile("%s.db" %(dbn)):
             self.connect()
+            #TODO : 해당 테이블 만드는 부분을 따로 분리할 필요가 있음. 해당 클래스에는 과도한 부분.
             self.query("""CREATE TABLE ms_user
                 (
                     id     CHAR(45)     NOT NULL, 
@@ -21,20 +22,6 @@ class DBManager:
                     class  CHAR(45)     NULL,
                     PRIMARY KEY(id)
                 );""")
-            self.query("""CREATE TABLE ms_lineitem
-                    (
-                        iid       INTEGER PRIMARY KEY AUTOINCREMENT, 
-                        name      CHAR(45)       NOT NULL, 
-                        quantity  INT            NOT NULL, 
-                        cost      INT            NOT NULL
-                    );""")
-            self.query("""CREATE TABLE ms_shoppingcart
-                    (
-                        id        CHAR(45)       NOT NULL, 
-                        iid       INTEGER            NOT NULL, 
-                        quantity  INT            NULL, 
-                        PRIMARY KEY (id,iid)
-                    );""")
             self.close()
 
 

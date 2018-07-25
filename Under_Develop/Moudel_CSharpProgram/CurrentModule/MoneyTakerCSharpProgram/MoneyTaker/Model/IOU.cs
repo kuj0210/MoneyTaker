@@ -23,46 +23,12 @@ namespace MoneyTaker
         private int state;              //상태 (enum)
         private String memo;            //메모
 
-        internal string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
-
-        internal int Cost
-        {
-            get { return cost; }
-            set { cost = value; }
-        }
-
-        internal DateTime EnrollDate
-        {
-            get { return enrollDate; }
-            set { enrollDate = value; }
-        }
-
-        internal DateTime StartDate
-        {
-            get { return startDate; }
-            set { startDate = value; }
-        }
-
-        internal DateTime EndDate
-        {
-            get { return endDate; }
-            set { endDate = value; }
-        }
-
-        internal int State
-        {
-            get { return state; }
-            set { state = value; }
-        }
-
-        internal string Memo
-        {
-            get { return memo; }
-            set { memo = value; }
-        }
+        public string Name { get => name; set => name = value; }
+        public int Cost { get => cost; set => cost = value; }
+        public DateTime EnrollDate { get => enrollDate; set => enrollDate = value; }
+        public DateTime StartDate { get => startDate; set => startDate = value; }
+        public DateTime EndDate { get => endDate; set => endDate = value; }
+        public int State { get => state; set => state = value; }
+        public string Memo { get => memo; set => memo = value; }
     }
 }

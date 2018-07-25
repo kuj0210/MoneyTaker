@@ -17,9 +17,9 @@ namespace MoneyTaker
     public class Model
     {
 
-        List<Friend> friends = new List<Friend>();
-        List<Borrow> borrowData = new List<Borrow>();
-        List<Buscar> buscarData = new List<Buscar>();
+        internal List<Friend> friends = new List<Friend>();
+        internal List<Borrow> borrowData = new List<Borrow>();
+        internal List<Lend> lendData = new List<Lend>();
 
         public Model()
         {
@@ -27,16 +27,16 @@ namespace MoneyTaker
             Load();
         }
 
-        public Model(List<Friend> friends, List<Borrow> borrowData, List<Buscar> buscarData)
+        public Model(List<Friend> friends, List<Borrow> borrowData, List<Lend> lendData)
         {
             this.friends = friends;
             this.borrowData = borrowData;
-            this.buscarData = buscarData;
+            this.lendData = lendData;
         }
 
         internal List<Friend> Friends { get => friends; set => friends = value; }
         internal List<Borrow> BorrowData { get => borrowData; set => borrowData = value; }
-        internal List<Buscar> BuscarData { get => buscarData; set => buscarData = value; }
+        internal List<Lend> LendData { get => lendData; set => lendData = value; }
 
 
         /** 아래로 파일 저장 파트 **/
@@ -46,7 +46,7 @@ namespace MoneyTaker
             {
                 friends.Clear();
                 borrowData.Clear();
-                buscarData.Clear();
+                lendData.Clear();
 
                 XmlDocument xml = new XmlDocument();
                 xml.Load(Propertise.MODEL_PATH);
@@ -65,7 +65,7 @@ namespace MoneyTaker
                 }
                 foreach (XmlNode item in root2)
                 {
-                    buscarData.Add(new Buscar(item.Attributes["name"].Value,
+                    lendData.Add(new Lend(item.Attributes["name"].Value,
                         Int32.Parse(item.Attributes["money"].Value),
                         Convert.ToDateTime(item.Attributes["startdate"].Value),
                         Convert.ToDateTime(item.Attributes["enddate"].Value),
@@ -98,7 +98,7 @@ namespace MoneyTaker
             XmlNode root = xml.CreateElement("Models");
             xml.AppendChild(root);
             XmlNode buscarRoot = xml.CreateElement("Buscar");
-            foreach (Buscar item in BuscarData)
+            foreach (Lend item in LendData)
             {
                 XmlNode buscarItem = xml.CreateElement("Item");
 

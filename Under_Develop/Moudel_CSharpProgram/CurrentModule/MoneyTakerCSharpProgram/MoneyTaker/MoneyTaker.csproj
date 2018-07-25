@@ -50,9 +50,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="Controller\AddFriendsFormController.cs" />
+    <Compile Include="Controller\AddGroupsFormController.cs" />
+    <Compile Include="Controller\DealFormController.cs" />
+    <Compile Include="Controller\FriendsFormController.cs" />
+    <Compile Include="Controller\LoginFormController.cs" />
+    <Compile Include="Controller\MainFormController.cs" />
+    <Compile Include="Controller\MainStartFormContoller.cs" />
+    <Compile Include="Controller\ProfileFormContoller.cs" />
     <Compile Include="MainApp.cs" />
     <Compile Include="Model\Borrow.cs" />
-    <Compile Include="Model\Buscar.cs" />
+    <Compile Include="Model\Lend.cs" />
     <Compile Include="Model\Friend.cs" />
     <Compile Include="Model\IOU.cs" />
     <Compile Include="Model\Model.cs" />
@@ -114,9 +122,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controller\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="View\AddFriendsForm.resx">
       <DependentUpon>AddFriendsForm.cs</DependentUpon>
@@ -142,9 +148,6 @@
     <EmbeddedResource Include="View\ProfileForm.resx">
       <DependentUpon>ProfileForm.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class Buscar
+public class Lend
 {
     String name;
     int money;
@@ -12,7 +12,7 @@ public class Buscar
     DateTime enddate;
     String memo;
 
-    public Buscar(string name, int money, DateTime startdate, DateTime enddate, string memo)
+    public Lend(string name, int money, DateTime startdate, DateTime enddate, string memo)
     {
         this.name = name;
         this.money = money;
