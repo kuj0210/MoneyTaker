@@ -12,18 +12,57 @@ class DBManager:
     def __init__(self, dbn: str):
         self.db = dbn
         if not os.path.isfile("%s.db" %(dbn)):
-            self.connect()
-            #TODO : 해당 테이블 만드는 부분을 따로 분리할 필요가 있음. 해당 클래스에는 과도한 부분.
-            self.query("""CREATE TABLE ms_user
-                (
-                    id     CHAR(45)     NOT NULL, 
-                    pw     CHAR(45)     NOT NULL, 
-                    token  CHAR(256)    NOT NULL, 
-                    class  CHAR(45)     NULL,
-                    PRIMARY KEY(id)
-                );""")
-            self.close()
+            self.initDB()
 
+    # TODO : 해당 테이블 만드는 부분을 따로 분리할 필요가 있음. mariaDB로 옮긴 후에는 해당 initDB에 pass 로 치환할 것.
+    def initDB(self):
+        querys = [
+            """CREATE TABLE mt_user
+            (
+                `index`  INT            NOT NULL    AUTO_INCREMENT, 
+                `id`     VARCHAR(45)    NOT NULL, 
+                `pw`     VARCHAR(45)    NOT NULL, 
+                `token`  CHAR(256)      NOT NULL, 
+                `class`  CHAR(45)       NULL, 
+                PRIMARY KEY (index)
+            );""",
+            """CREATE TABLE mt_group
+            (
+                `gindex`  INT            NOT NULL    AUTO_INCREMENT, 
+                `name`    VARCHAR(45)    NOT NULL, 
+                `state`   VARCHAR(45)    NULL, 
+                PRIMARY KEY (gindex)
+            );""",
+            """CREATE TABLE mt_iou
+            (
+                `rindex`          INT               NOT NULL    AUTO_INCREMENT, 
+                `date`            TIMESTAMP         NOT NULL, 
+                `borrower_index`  INT               NOT NULL, 
+                `lender_index`    INT               NOT NULL, 
+                `start_date`      DATETIME          NULL, 
+                `end_date`        DATETIME          NULL, 
+                `cost`            DECIMAL(18, 0)    NOT NULL, 
+                `state`           INT               NULL, 
+                PRIMARY KEY (rindex)
+            );""",
+            """CREATE TABLE mt_friendlist
+            (
+                `gindex`        INT    NOT NULL, 
+                `index`         INT    NOT NULL, 
+                `friend_index`  INT    NOT NULL, 
+                `credit`        INT    NULL, 
+                PRIMARY KEY (index, friend_index)
+            );""",
+            """CREATE TABLE mt_grouplist
+            (
+                `index`       INT    NOT NULL, 
+                `gindex`      INT    NOT NULL, 
+                `permission`  INT    NULL, 
+                PRIMARY KEY (index, gindex)
+            );"""
+        ]
+        for query in querys:
+            self.query(query);
 
     def connect(self):
         self.conn = sqlite3.connect("%s.db" % (self.db), isolation_level=None)

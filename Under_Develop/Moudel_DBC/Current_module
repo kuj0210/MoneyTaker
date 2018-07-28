@@ -1,89 +1,79 @@
--- mt_entity Table Create SQL
-CREATE TABLE mt_entity
-(
-index INT NOT NULL,
-class CHAR(1) NULL,
-PRIMARY KEY (index)
-);
-
 -- mt_user Table Create SQL
 CREATE TABLE mt_user
 (
-index INT NOT NULL,
-name VARCHAR(45) NULL,
-id VARCHAR(45) NULL,
-pw VARCHAR(45) NULL,
-PRIMARY KEY (index)
+    `index`  INT            NOT NULL    AUTO_INCREMENT, 
+    `id`     VARCHAR(45)    NOT NULL, 
+    `pw`     VARCHAR(45)    NOT NULL, 
+    `token`  CHAR(256)      NOT NULL, 
+    `class`  CHAR(45)       NULL, 
+    PRIMARY KEY (index)
 );
 
-ALTER TABLE mt_user ADD CONSTRAINT FK_mt_user_index_mt_entity_index FOREIGN KEY (index)
-REFERENCES mt_entity (index) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 -- mt_group Table Create SQL
 CREATE TABLE mt_group
 (
-gindex INT NOT NULL,
-name VARCHAR(45) NOT NULL,
-state VARCHAR(45) NULL,
-PRIMARY KEY (gindex)
+    `gindex`  INT            NOT NULL    AUTO_INCREMENT, 
+    `name`    VARCHAR(45)    NOT NULL, 
+    `state`   VARCHAR(45)    NULL, 
+    PRIMARY KEY (gindex)
 );
 
-ALTER TABLE mt_group ADD CONSTRAINT FK_mt_group_gindex_mt_entity_index FOREIGN KEY (gindex)
-REFERENCES mt_entity (index) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 -- mt_iou Table Create SQL
 CREATE TABLE mt_iou
 (
-index INT NOT NULL,
-date TIMESTAMP NOT NULL,
-borrower_idx INT NOT NULL,
-lender_idx INT NOT NULL,
-start_date DATETIME NULL,
-end_date DATETIME NULL,
-cost DECIMAL(18, 0) NOT NULL,
-state INT NULL,
-PRIMARY KEY (index, date, borrower_idx, lender_idx)
+    `rindex`          INT               NOT NULL    AUTO_INCREMENT, 
+    `date`            TIMESTAMP         NOT NULL, 
+    `borrower_index`  INT               NOT NULL, 
+    `lender_index`    INT               NOT NULL, 
+    `start_date`      DATETIME          NULL, 
+    `end_date`        DATETIME          NULL, 
+    `cost`            DECIMAL(18, 0)    NOT NULL, 
+    `state`           INT               NULL, 
+    PRIMARY KEY (rindex)
 );
 
-ALTER TABLE mt_iou ADD CONSTRAINT FK_mt_iou_index_mt_entity_index FOREIGN KEY (index)
-REFERENCES mt_entity (index) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE mt_iou ADD CONSTRAINT FK_mt_iou_borrower_index_mt_user_index FOREIGN KEY (borrower_index)
+ REFERENCES mt_user (index)  ON DELETE RESTRICT ON UPDATE RESTRICT;
 
-ALTER TABLE mt_iou ADD CONSTRAINT FK_mt_iou_borrower_idx_mt_entity_index FOREIGN KEY (borrower_idx)
-REFERENCES mt_entity (index) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE mt_iou ADD CONSTRAINT FK_mt_iou_lender_index_mt_user_index FOREIGN KEY (lender_index)
+ REFERENCES mt_user (index)  ON DELETE RESTRICT ON UPDATE RESTRICT;
 
-ALTER TABLE mt_iou ADD CONSTRAINT FK_mt_iou_lender_idx_mt_entity_index FOREIGN KEY (lender_idx)
-REFERENCES mt_entity (index) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 -- mt_friendlist Table Create SQL
 CREATE TABLE mt_friendlist
 (
-index INT NOT NULL,
-friend_index INT NOT NULL,
-gindex INT NOT NULL,
-credit INT NULL,
-PRIMARY KEY (index, friend_index)
+    `gindex`        INT    NOT NULL, 
+    `index`         INT    NOT NULL, 
+    `friend_index`  INT    NOT NULL, 
+    `credit`        INT    NULL, 
+    PRIMARY KEY (index, friend_index)
 );
 
+ALTER TABLE mt_friendlist ADD CONSTRAINT FK_mt_friendlist_gindex_mt_group_gindex FOREIGN KEY (gindex)
+ REFERENCES mt_group (gindex)  ON DELETE RESTRICT ON UPDATE RESTRICT;
+
 ALTER TABLE mt_friendlist ADD CONSTRAINT FK_mt_friendlist_index_mt_user_index FOREIGN KEY (index)
-REFERENCES mt_user (index) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ REFERENCES mt_user (index)  ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 ALTER TABLE mt_friendlist ADD CONSTRAINT FK_mt_friendlist_friend_index_mt_user_index FOREIGN KEY (friend_index)
-REFERENCES mt_user (index) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ REFERENCES mt_user (index)  ON DELETE RESTRICT ON UPDATE RESTRICT;
 
-ALTER TABLE mt_friendlist ADD CONSTRAINT FK_mt_friendlist_gindex_mt_group_gindex FOREIGN KEY (gindex)
-REFERENCES mt_group (gindex) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 -- mt_grouplist Table Create SQL
 CREATE TABLE mt_grouplist
 (
-gindex INT NOT NULL,
-index INT NOT NULL,
-permission INT NULL,
-PRIMARY KEY (gindex, index)
+    `index`       INT    NOT NULL, 
+    `gindex`      INT    NOT NULL, 
+    `permission`  INT    NULL, 
+    PRIMARY KEY (index, gindex)
 );
 
 ALTER TABLE mt_grouplist ADD CONSTRAINT FK_mt_grouplist_index_mt_user_index FOREIGN KEY (index)
-REFERENCES mt_user (index) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ REFERENCES mt_user (index)  ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 ALTER TABLE mt_grouplist ADD CONSTRAINT FK_mt_grouplist_gindex_mt_group_gindex FOREIGN KEY (gindex)
-REFERENCES mt_group (gindex) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ REFERENCES mt_group (gindex)  ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+

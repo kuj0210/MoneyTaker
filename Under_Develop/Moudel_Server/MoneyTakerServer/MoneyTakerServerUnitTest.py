@@ -42,12 +42,12 @@ class MoneyTakerServerTest(unittest.TestCase):
 
     def test_register_exist_user(self):  # 이미 가입되어 있는 아이디를 가입.
         p = self.app.post('/',
-                          json={'type':'register','id': 'user1', 'pw': xor_encrypt('1q2w3e4r', ENCRYPT_KEY), 'class': 'user'})
+                          json={'type': 'register', 'id': 'user1', 'pw': xor_encrypt('1q2w3e4r', ENCRYPT_KEY), 'class': 'user'})
         result = json.loads(p.data)
         self.assertEqual(result["result"], "failed")
 
     def test_login_normal(self):  # 정상 로그인
-        p = self.app.post('/', json={'type':'login','id': 'user1', 'pw': xor_encrypt('1q2w3e4r', ENCRYPT_KEY)})
+        p = self.app.post('/', json={'type': 'login', 'id': 'user1', 'pw': xor_encrypt('1q2w3e4r', ENCRYPT_KEY)})
         result = json.loads(p.data)
         self.assertEqual(result["result"], "success")
 

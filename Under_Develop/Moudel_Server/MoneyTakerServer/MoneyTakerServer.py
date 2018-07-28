@@ -33,12 +33,14 @@ app = Flask(__name__)
 dbc = DBManager(dbn=DB_DATABASE)
 
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['POST','GET'])
 def main():
+    dataReceive = {}
     try:
-        dataReceive = request.get.json()
+        dataReceive = request.get_json()
     except Exception as e:
         print(e)
+        pass
     msgType = dataReceive['type']
     if msgType == 'register':
         return Register(dataReceive)
@@ -56,7 +58,10 @@ def Register(dataReceive):
     id = dataReceive['id']
     pw = dataReceive['pw']
     token = xor_encrypt(id + pw, ENCRYPT_KEY)
-    permission = dataReceive['class']
+    try:
+        permission = dataReceive['class']
+    except:
+        permission = 'user'
     try:
         # dbc = DBManager(_host=DB_HOST, _db=DB_DATABASE, _user=DB_USER, _password=DB_PW)
         # dbc.connect()
@@ -95,7 +100,8 @@ def Login(dataReceive):
     pw = dataReceive['pw']
     try:
         # dbc.connect()
-        result = dbc.select(DB_TABLE_USER, "id=\'{id}\' and pw=\'{pw}\'".format(id=id, pw=pw))
+        #result = dbc.select(DB_TABLE_USER, "id=\'{id}\' and pw=\'{pw}\'".format(id=id, pw=pw))
+        result = dbc.select(DB_TABLE_USER, "id=\'{id}\'".format(id=id))
         # dbc.close()
     except Exception as e:
         print(e)
@@ -106,20 +112,27 @@ def Login(dataReceive):
             , "info": str(e)
         }
     else:
+        print(result[0][1], "==", pw)
         if result == []:
             dataSend = {
                 "type": "login"
                 , "result": "failed"
                 , "info": "not found"
             }
-        else:
+        elif result[0][1] == pw:
             dataSend = {
                 "type": "login"
                 , "result": "success"
                 , "AuthToken": result[0][2]
             }
+        else:
+            dataSend = {
+                "type": "login"
+                , "result": "failed"
+                , "info": "password incorrect"
+            }
     print(dataSend)
     return jsonify(dataSend)
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=80, debug=True)
+    app.run(host='0.0.0.0', port=8888, debug=True)

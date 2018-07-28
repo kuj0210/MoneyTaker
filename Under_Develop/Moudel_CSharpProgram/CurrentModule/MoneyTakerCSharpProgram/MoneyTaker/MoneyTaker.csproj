@@ -68,6 +68,7 @@
     <Compile Include="Util\ClarifyManager.cs" />
     <Compile Include="Util\DBManager.cs" />
     <Compile Include="Util\EncryptTool.cs" />
+    <Compile Include="Util\JsonManager.cs" />
     <Compile Include="Util\MailManager.cs" />
     <Compile Include="Util\RegistryManager.cs" />
     <Compile Include="View\AddFriendsForm.cs">
