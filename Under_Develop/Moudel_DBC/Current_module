@@ -1,79 +1,90 @@
+drop database if exists moneytaker;
+create database moneytaker
+default character set utf8
+default collate utf8_general_ci;
+use moneytaker;
+
 -- mt_user Table Create SQL
 CREATE TABLE mt_user
 (
-    `index`  INT            NOT NULL    AUTO_INCREMENT, 
-    `id`     VARCHAR(45)    NOT NULL, 
-    `pw`     VARCHAR(45)    NOT NULL, 
-    `token`  CHAR(256)      NOT NULL, 
-    `class`  CHAR(45)       NULL, 
-    PRIMARY KEY (index)
-);
+    `idx`    INT             NOT NULL    AUTO_INCREMENT, 
+    `id`     VARCHAR(45)     NOT NULL, 
+    `pw`     VARCHAR(256)    NOT NULL, 
+    `token`  VARCHAR(256)    NOT NULL, 
+    `class`  VARCHAR(45)     NULL, 
+    PRIMARY KEY (idx)
+)ENGINE=InnoDB
+default character set utf8
+default collate utf8_general_ci;
 
 
 -- mt_group Table Create SQL
 CREATE TABLE mt_group
 (
-    `gindex`  INT            NOT NULL    AUTO_INCREMENT, 
-    `name`    VARCHAR(45)    NOT NULL, 
-    `state`   VARCHAR(45)    NULL, 
-    PRIMARY KEY (gindex)
-);
+    `gidx`   INT            NOT NULL    AUTO_INCREMENT, 
+    `name`   VARCHAR(45)    NOT NULL, 
+    `state`  VARCHAR(45)    NULL, 
+    PRIMARY KEY (gidx)
+)ENGINE=InnoDB
+default character set utf8
+default collate utf8_general_ci;
 
 
 -- mt_iou Table Create SQL
 CREATE TABLE mt_iou
 (
-    `rindex`          INT               NOT NULL    AUTO_INCREMENT, 
-    `date`            TIMESTAMP         NOT NULL, 
-    `borrower_index`  INT               NOT NULL, 
-    `lender_index`    INT               NOT NULL, 
-    `start_date`      DATETIME          NULL, 
-    `end_date`        DATETIME          NULL, 
-    `cost`            DECIMAL(18, 0)    NOT NULL, 
-    `state`           INT               NULL, 
-    PRIMARY KEY (rindex)
-);
+    `ridx`          INT               NOT NULL    AUTO_INCREMENT, 
+    `date`          TIMESTAMP         NOT NULL, 
+    `borrower_idx`  INT               NOT NULL, 
+    `lender_idx`    INT               NOT NULL, 
+    `start_date`    DATETIME          NULL, 
+    `end_date`      DATETIME          NULL, 
+    `cost`          DECIMAL(18, 0)    NOT NULL, 
+    `state`         INT               NULL, 
+    PRIMARY KEY (ridx)
+)ENGINE=InnoDB
+default character set utf8
+default collate utf8_general_ci;
 
-ALTER TABLE mt_iou ADD CONSTRAINT FK_mt_iou_borrower_index_mt_user_index FOREIGN KEY (borrower_index)
- REFERENCES mt_user (index)  ON DELETE RESTRICT ON UPDATE RESTRICT;
-
-ALTER TABLE mt_iou ADD CONSTRAINT FK_mt_iou_lender_index_mt_user_index FOREIGN KEY (lender_index)
- REFERENCES mt_user (index)  ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE mt_iou ADD CONSTRAINT FK_mt_iou_borrower_idx_mt_user_idx FOREIGN KEY (borrower_idx)
+ REFERENCES mt_user (idx)  ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE mt_iou ADD CONSTRAINT FK_mt_iou_lender_idx_mt_user_idx FOREIGN KEY (lender_idx)
+ REFERENCES mt_user (idx)  ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 
 -- mt_friendlist Table Create SQL
 CREATE TABLE mt_friendlist
 (
-    `gindex`        INT    NOT NULL, 
-    `index`         INT    NOT NULL, 
-    `friend_index`  INT    NOT NULL, 
-    `credit`        INT    NULL, 
-    PRIMARY KEY (index, friend_index)
-);
+    `gidx`        INT    NOT NULL, 
+    `idx`         INT    NOT NULL, 
+    `friend_idx`  INT    NOT NULL, 
+    `credit`      INT    NULL, 
+    PRIMARY KEY (idx, friend_idx)
+)ENGINE=InnoDB
+default character set utf8
+default collate utf8_general_ci;
 
-ALTER TABLE mt_friendlist ADD CONSTRAINT FK_mt_friendlist_gindex_mt_group_gindex FOREIGN KEY (gindex)
- REFERENCES mt_group (gindex)  ON DELETE RESTRICT ON UPDATE RESTRICT;
-
-ALTER TABLE mt_friendlist ADD CONSTRAINT FK_mt_friendlist_index_mt_user_index FOREIGN KEY (index)
- REFERENCES mt_user (index)  ON DELETE RESTRICT ON UPDATE RESTRICT;
-
-ALTER TABLE mt_friendlist ADD CONSTRAINT FK_mt_friendlist_friend_index_mt_user_index FOREIGN KEY (friend_index)
- REFERENCES mt_user (index)  ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE mt_friendlist ADD CONSTRAINT FK_mt_friendlist_gidx_mt_group_gidx FOREIGN KEY (gidx)
+ REFERENCES mt_group (gidx)  ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE mt_friendlist ADD CONSTRAINT FK_mt_friendlist_idx_mt_user_idx FOREIGN KEY (idx)
+ REFERENCES mt_user (idx)  ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE mt_friendlist ADD CONSTRAINT FK_mt_friendlist_friend_idx_mt_user_idx FOREIGN KEY (friend_idx)
+ REFERENCES mt_user (idx)  ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 
 -- mt_grouplist Table Create SQL
 CREATE TABLE mt_grouplist
 (
-    `index`       INT    NOT NULL, 
-    `gindex`      INT    NOT NULL, 
+    `idx`         INT    NOT NULL, 
+    `gidx`        INT    NOT NULL, 
     `permission`  INT    NULL, 
-    PRIMARY KEY (index, gindex)
-);
+    PRIMARY KEY (idx, gidx)
+)ENGINE=InnoDB
+default character set utf8
+default collate utf8_general_ci;
 
-ALTER TABLE mt_grouplist ADD CONSTRAINT FK_mt_grouplist_index_mt_user_index FOREIGN KEY (index)
- REFERENCES mt_user (index)  ON DELETE RESTRICT ON UPDATE RESTRICT;
-
-ALTER TABLE mt_grouplist ADD CONSTRAINT FK_mt_grouplist_gindex_mt_group_gindex FOREIGN KEY (gindex)
- REFERENCES mt_group (gindex)  ON DELETE RESTRICT ON UPDATE RESTRICT;
-
-
+ALTER TABLE mt_grouplist ADD CONSTRAINT FK_mt_grouplist_idx_mt_user_idx FOREIGN KEY (idx)
+ REFERENCES mt_user (idx)  ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE mt_grouplist ADD CONSTRAINT FK_mt_grouplist_gidx_mt_group_gidx FOREIGN KEY (gidx)
+ REFERENCES mt_group (gidx)  ON DELETE RESTRICT ON UPDATE RESTRICT;
+ 
