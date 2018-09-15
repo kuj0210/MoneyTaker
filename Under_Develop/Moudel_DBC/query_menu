@@ -1,0 +1,11 @@
+INSERT INTO mt_friendlist(gidx, idx, friend_idx, credit) VALUES(0, 0, 0, NULL);
+INSERT INTO mt_group(name, state) VALUES('', NULL);
+INSERT INTO mt_grouplist(idx, gidx, permission) VALUES(0, 0, NULL);
+INSERT INTO mt_iou(`date`, borrower_idx, lender_idx, start_date, end_date, cost, state) VALUES(current_timestamp(), 0, 0, NULL, NULL, 0, NULL);
+INSERT INTO mt_user(id, pw, token, class) VALUES('', '', '', NULL);
+
+SELECT gidx, idx, friend_idx, credit FROM mt_friendlist;
+SELECT gidx, name, state FROM mt_group;
+SELECT idx, gidx, permission FROM mt_grouplist;
+SELECT ridx, `date`, borrower_idx, lender_idx, start_date, end_date, cost, state FROM mt_iou;
+SELECT idx, id, pw, token, class FROM mt_user;
